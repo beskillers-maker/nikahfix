@@ -3,152 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikah Fix - Official</title>
+    <title>NikahFix | Premuim Matrimonial Theme</title>
     
     <style>
-        /* CSS DESIGN (KEEPING YOUR EXACT STYLE) */
-        :root { --pink: #e91e63; --dark: #1f2937; --bg: #f3f4f6; --green: #25d366; --blue: #3498db; --gold: #ffd700; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--dark); scroll-behavior: smooth; }
+        /* THEME SETTINGS */
+        :root { 
+            --primary: #e91e63; /* Pink */
+            --primary-dark: #c2185b;
+            --secondary: #1f2937; /* Dark Blue/Gray */
+            --accent: #3498db; /* Verified Blue */
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
 
-        /* Navbar */
-        .navbar { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; color: inherit; }
-        .logo span { color: var(--pink); }
-        .reg-btn { background: var(--pink); color: white; border: none; padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--bg-light); color: var(--secondary); overflow-x: hidden; }
 
-        /* Hero Section */
-        .hero { height: 300px; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-        .hero h1 { font-size: 40px; margin: 0; }
-        .hero h1 span { color: #ffd700; }
+        /* Unified Navbar */
+        .navbar { background: var(--white); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 26px; font-weight: 800; cursor: pointer; text-decoration: none; color: var(--secondary); letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .btn-reg { background: var(--primary); color: white; border: none; padding: 10px 24px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-reg:hover { background: var(--primary-dark); transform: scale(1.05); }
 
-        /* Success Stories Section (NEW) */
-        .success-bar { background: #fff; padding: 20px 5%; text-align: center; border-bottom: 1px solid #eee; }
-        .story-container { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0; justify-content: center; }
-        .story-box { background: #fffafb; padding: 10px 20px; border-radius: 50px; border: 1px solid #fce4ec; font-size: 13px; white-space: nowrap; font-style: italic; }
+        /* Sections Handling */
+        .page-section { display: none; padding: 40px 8%; min-height: 70vh; animation: fadeIn 0.5s ease; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Search Bar */
-        .search-container { max-width: 600px; margin: -30px auto 30px; padding: 0 20px; position: relative; z-index: 10; }
-        .search-bar { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.15); font-size: 16px; outline: none; }
+        /* Unified Hero Section */
+        #home-section { padding: 0; }
+        .hero { height: 450px; background: linear-gradient(45deg, rgba(233, 30, 99, 0.8), rgba(31, 41, 55, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1500&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero h1 { font-size: clamp(32px, 5vw, 55px); margin-bottom: 10px; }
+        .hero p { font-size: 18px; opacity: 0.9; max-width: 600px; }
 
-        /* Profiles Grid */
-        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
-        .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; list-style: none; padding: 20px 0 60px; }
-        .user-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; position: relative; }
-        .user-card img { width: 100%; height: 280px; object-fit: cover; }
+        /* Success Stories Theme */
+        .stories-bar { background: var(--white); padding: 30px 0; border-bottom: 1px solid #eee; }
+        .story-scroller { display: flex; gap: 20px; overflow-x: auto; padding: 10px 8%; scrollbar-width: none; }
+        .story-item { background: #fff5f8; padding: 15px 25px; border-radius: 100px; border: 1px solid #fce4ec; white-space: nowrap; color: var(--primary-dark); font-weight: 500; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+
+        /* Search Theme */
+        .search-box { max-width: 700px; margin: -40px auto 40px; background: var(--white); padding: 10px; border-radius: 100px; box-shadow: var(--shadow); display: flex; z-index: 10; position: relative; }
+        .search-box input { border: none; padding: 15px 30px; width: 100%; border-radius: 100px; outline: none; font-size: 16px; }
+
+        /* Card Theme */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; list-style: none; padding: 0; }
+        .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: 0.4s; border: 1px solid #f1f5f9; position: relative; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 320px; object-fit: cover; }
         
-        /* Badges (NEW) */
-        .badge-v { position: absolute; top: 10px; right: 10px; background: var(--blue); color: white; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
-        .badge-f { position: absolute; top: 10px; left: 10px; background: var(--gold); color: black; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
-
-        .user-info { padding: 15px; }
-        .wa-btn { display: flex; align-items: center; justify-content: center; background: var(--green); color: white; text-decoration: none; padding: 10px; margin-top: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; }
-
-        /* Pages Visibility Logic */
-        .page-content { display: none; padding: 50px 5%; background: white; min-height: 400px; line-height: 1.6; }
-        .page-content.active { display: block; }
-        #main-site-content.active { display: block; }
-
-        /* Admin Controls */
-        .admin-controls { padding: 10px; background: #f9f9f9; border-top: 1px solid #eee; display: flex; flex-wrap: wrap; gap: 5px; }
-        .admin-btn { flex: 1; padding: 6px; font-size: 11px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; }
-
-        /* Modal & Forms (Keeping your exact code) */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
-        .modal-content { background: white; margin: 2% auto; padding: 30px; width: 90%; max-width: 480px; border-radius: 15px; position: relative; }
-        .hidden-input { display: none; margin-top: 10px; border: 2px solid var(--pink) !important; background: #fff0f5; }
+        .badge-verified { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 12px; border-radius: 50px; font-size: 11px; font-weight: bold; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); }
         
-        footer { background: var(--dark); color: white; padding: 30px 5%; text-align: center; margin-top: 50px; }
-        .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 14px; }
-        .footer-links a { color: #aaa; text-decoration: none; cursor: pointer; }
+        .card-content { padding: 20px; text-align: center; }
+        .card-content h3 { margin: 0; color: var(--secondary); font-size: 22px; }
+        .card-content p { color: #64748b; margin: 8px 0; font-size: 14px; }
+        
+        .btn-wa { display: block; background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 12px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
+        .btn-wa:hover { background: #1eb954; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+
+        /* Admin & Forms (Cleaned) */
+        .admin-box { background: #eff6ff; border: 2px dashed var(--accent); padding: 25px; border-radius: 20px; margin-bottom: 40px; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 2% auto; padding: 35px; width: 90%; max-width: 500px; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 15px; }
+
+        footer { background: var(--secondary); color: white; padding: 50px 8% 30px; text-align: center; margin-top: 60px; }
+        .footer-nav { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .footer-nav a { color: #94a3b8; text-decoration: none; cursor: pointer; font-size: 14px; transition: 0.3s; }
+        .footer-nav a:hover { color: var(--primary); }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo" onclick="showPage('main-site-content')">Nikah<span>Fix</span></div>
-        <button class="reg-btn" onclick="openModal()">Register Free</button>
+        <a onclick="showSection('home-section')" class="logo">Nikah<span>Fix</span></a>
+        <div class="nav-actions">
+            <a onclick="showSection('browse-section')" style="cursor:pointer; font-weight:600; margin-right:15px; color:var(--secondary);">Browse</a>
+            <button class="btn-reg" onclick="openModal()">Register Free</button>
+        </div>
     </nav>
 
-    <div id="main-site-content" class="page-content active" style="padding:0; background:transparent;">
+    <div id="home-section" class="page-section active">
         <header class="hero">
-            <div class="hero-content">
-                <h1>Find Your <span>Perfect</span> Match</h1>
-            </div>
+            <h1>Connecting <span>Hearts</span> Halal Way</h1>
+            <p>Pakistan's most trusted and free matrimonial platform. Your journey to a perfect life partner starts here.</p>
+            <button class="btn-reg" style="margin-top:25px; padding:15px 40px; font-size:18px;" onclick="showSection('browse-section')">Explore Profiles</button>
         </header>
 
-        <div class="success-bar">
-            <div class="story-container">
-                <div class="story-box">"Found my match from Lahore!" - Ahmed</div>
-                <div class="story-box">"Verified profiles are great." - Sara</div>
-                <div class="story-box">"Married in 3 months!" - Bilal</div>
+        <div class="stories-bar">
+            <div class="story-scroller">
+                <div class="story-item">❤️ Ahmed found Sara from Lahore</div>
+                <div class="story-item">💍 Bilal married Hina in 2 months</div>
+                <div class="story-item">✨ Verified matches are safer</div>
+                <div class="story-item">⭐ 1000+ Success Stories</div>
             </div>
-        </div>
-
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search by City, Caste or Name...">
-        </div>
-
-        <main class="container">
-            <div id="adminArea" style="display:none; background: #fff3f3; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 2px dashed var(--pink);">
-                <h2 style="color:var(--pink); margin-top:0;">Admin: Pending Approvals</h2>
-                <ul id="pendingUsers" class="profile-grid"></ul>
-                <button onclick="adminLogout()" class="reg-btn" style="background:#555">Logout Admin</button>
-            </div>
-            <ul id="users" class="profile-grid"></ul>
-        </main>
-    </div>
-
-    <div id="privacy-page" class="page-content">
-        <div class="container">
-            <h1>Privacy Policy</h1>
-            <p>Your privacy is important to us. We only collect information required for matchmaking.</p>
-            <ul>
-                <li>We do not share your WhatsApp number publicly without registration.</li>
-                <li>Your images are stored securely.</li>
-                <li>Admin manually verifies profiles for safety.</li>
-            </ul>
-            <button class="reg-btn" onclick="showPage('main-site-content')">Back to Home</button>
         </div>
     </div>
 
-    <div id="terms-page" class="page-content">
-        <div class="container">
-            <h1>Terms of Use</h1>
-            <p>By using NikahFix, you agree to:</p>
-            <ul>
-                <li>Provide 100% correct and truthful information.</li>
-                <li>Not use the platform for harassment or illegal activities.</li>
-                <li>Accept that Admin can delete any profile for safety reasons.</li>
-            </ul>
-            <button class="reg-btn" onclick="showPage('main-site-content')">Back to Home</button>
+    <div id="browse-section" class="page-section">
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="search()" placeholder="Search by city, caste, or name...">
+        </div>
+
+        <div class="container" style="max-width:1200px; margin:auto;">
+            <div id="adminArea" style="display:none;" class="admin-box">
+                <h3 style="margin-top:0; color:var(--accent);">Admin Dashboard: Pending</h3>
+                <ul id="pendingUsers" class="grid"></ul>
+                <button onclick="adminLogout()" class="btn-reg" style="background:#64748b; margin-top:20px;">Logout Admin</button>
+            </div>
+
+            <ul id="users" class="grid"></ul>
+        </div>
+    </div>
+
+    <div id="privacy-section" class="page-section">
+        <div style="max-width:800px; margin:auto; background:white; padding:40px; border-radius:20px;">
+            <h1 style="color:var(--primary);">Privacy Policy</h1>
+            <p>At NikahFix, we prioritize your security. Your data is never sold to third parties.</p>
+            <p>1. Only approved profiles are visible.<br>2. You can request profile deletion anytime.<br>3. We use manual verification.</p>
+            <button class="btn-reg" onclick="showSection('home-section')">Back Home</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 NikahFix.com - Making Halal Matches Easy</p>
-        <div class="footer-links">
-            <a onclick="showPage('privacy-page')">Privacy Policy</a>
-            <a onclick="showPage('terms-page')">Terms of Use</a>
+        <div class="logo" style="color:white">Nikah<span>Fix</span></div>
+        <div class="footer-nav">
+            <a onclick="showSection('home-section')">Home</a>
+            <a onclick="showSection('browse-section')">Find Match</a>
+            <a onclick="showSection('privacy-section')">Privacy Policy</a>
             <a onclick="adminLogin()">Admin Login</a>
         </div>
+        <p style="opacity: 0.5; font-size: 13px; margin-top: 30px;">&copy; 2026 NikahFix Matrimonial. Built for the Ummah.</p>
     </footer>
 
     <div id="regModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 style="text-align:center; color:var(--pink); margin:0 0 20px 0;">Create Profile</h2>
+            <h2 style="text-align:center; color:var(--primary); margin:0 0 20px 0;">Create Profile</h2>
             <form id="regForm">
+                <label style="font-size:13px; color:#666;">Profile Photo</label>
                 <input type="file" id="profilePic" accept="image/*" required>
                 <input type="text" id="fullname" placeholder="Full Name" required>
                 <div style="display:flex; gap:10px;">
-                    <input type="number" id="age" min="18" placeholder="Age" required>
-                    <select id="gender" style="margin-top:5px; height:45px;"><option value="Male">Male</option><option value="Female">Female</option></select>
+                    <input type="number" id="age" placeholder="Age" min="18" required>
+                    <select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select>
                 </div>
-                <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
-                <input list="cities" id="cityInput" placeholder="Search City..." required>
-                <datalist id="cities"><option value="Lahore"><option value="Karachi"><option value="Islamabad"></datalist>
+                <input type="text" id="whatsapp" placeholder="WhatsApp (92300...)" required>
+                <input type="text" id="cityInput" placeholder="City" required>
                 <input type="text" id="casteInput" placeholder="Caste" required>
-                <button type="submit" class="submit-btn" id="subBtn">Publish Profile</button>
+                <button type="submit" id="subBtn" class="btn-reg" style="width:100%; padding:15px; margin-top:10px;">Submit for Approval</button>
+                <p onclick="closeModal()" style="text-align:center; cursor:pointer; color:#94a3b8; font-size:14px; margin-top:15px;">Close Window</p>
             </form>
         </div>
     </div>
@@ -157,7 +162,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-        // Your Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyCtKxg4q4zE7WfXdvDzEd4cpBfJMFzwKrQ",
             authDomain: "nikahfix-a6980.firebaseapp.com",
@@ -172,36 +176,32 @@
         const db = getDatabase(app);
         const usersRef = ref(db, 'profiles');
 
-        // Show/Hide Pages
-        window.showPage = (pageId) => {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+        // SECTION SWITCHER
+        window.showSection = (id) => {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0,0);
         };
 
-        // Submit Form
+        // SUBMIT FORM
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn = document.getElementById('subBtn');
-            btn.innerText = "Processing..."; btn.disabled = true;
+            const btn = document.getElementById('subBtn'); btn.innerText = "Processing..."; btn.disabled = true;
             const file = document.getElementById('profilePic').files[0];
             const reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = (ev) => {
                 push(usersRef, {
-                    img: event.target.result,
-                    name: document.getElementById('fullname').value,
-                    age: document.getElementById('age').value,
-                    gender: document.getElementById('gender').value,
-                    wa: document.getElementById('whatsapp').value,
-                    city: document.getElementById('cityInput').value,
-                    caste: document.getElementById('casteInput').value,
-                    status: "pending", verified: false, featured: false
-                }).then(() => { alert("Done! Approval pending."); location.reload(); });
+                    img: ev.target.result, name: document.getElementById('fullname').value,
+                    age: document.getElementById('age').value, gender: document.getElementById('gender').value,
+                    wa: document.getElementById('whatsapp').value, city: document.getElementById('cityInput').value,
+                    caste: document.getElementById('casteInput').value, status: "pending", 
+                    verified: false, timestamp: Date.now()
+                }).then(() => { alert("Profile submitted for Admin review!"); location.reload(); });
             };
             reader.readAsDataURL(file);
         });
 
-        // Display Data
+        // SYNC DATA
         onValue(usersRef, (snapshot) => {
             const list = document.getElementById('users');
             const pendingList = document.getElementById('pendingUsers');
@@ -209,40 +209,37 @@
             const data = snapshot.val();
             const isAdmin = localStorage.getItem('nikahAdmin') === 'true';
 
-            if (data) {
+            if(data) {
                 Object.keys(data).reverse().forEach(key => {
                     const u = data[key];
-                    const cardHTML = `
-                        <li class="user-card">
-                            ${u.verified ? '<div class="badge-v">✅ Verified</div>' : ''}
-                            ${u.featured ? '<div class="badge-f">⭐ Featured</div>' : ''}
+                    const card = `
+                        <li class="card">
+                            ${u.verified ? '<div class="badge-verified">✅ Verified</div>' : ''}
                             <img src="${u.img}">
-                            <div class="user-info">
+                            <div class="card-content">
                                 <h3>${u.name}</h3>
                                 <p><strong>${u.age} Yrs | ${u.gender}</strong></p>
                                 <p>📍 ${u.city} | ${u.caste}</p>
-                                ${u.status === 'approved' ? `<a href="https://wa.me/${u.wa}" target="_blank" class="wa-btn">WhatsApp</a>` : ''}
+                                ${u.status === 'approved' ? `<a href="https://wa.me/${u.wa}" target="_blank" class="btn-wa">Contact on WhatsApp</a>` : ''}
                                 ${isAdmin ? `
-                                    <div class="admin-controls">
-                                        ${u.status === 'pending' ? `<button onclick="approveProfile('${key}')" class="admin-btn" style="background:green">Approve</button>` : ''}
-                                        <button onclick="toggleVerify('${key}', ${u.verified})" class="admin-btn" style="background:blue">${u.verified ? 'Unverify' : 'Verify'}</button>
-                                        <button onclick="deleteProfile('${key}')" class="admin-btn" style="background:red">Delete</button>
+                                    <div style="margin-top:15px; display:flex; gap:5px;">
+                                        ${u.status === 'pending' ? `<button onclick="approve('${key}')" style="background:green; color:white; border:none; padding:5px; flex:1; cursor:pointer; border-radius:5px;">Approve</button>` : ''}
+                                        <button onclick="toggleVerify('${key}', ${u.verified})" style="background:blue; color:white; border:none; padding:5px; flex:1; cursor:pointer; border-radius:5px;">Verify</button>
+                                        <button onclick="del('${key}')" style="background:red; color:white; border:none; padding:5px; flex:1; cursor:pointer; border-radius:5px;">Delete</button>
                                     </div>` : ''}
                             </div>
                         </li>`;
-                    if(u.status === "approved") list.innerHTML += cardHTML;
-                    else if(isAdmin && u.status === "pending") pendingList.innerHTML += cardHTML;
+                    if(u.status === "approved") list.innerHTML += card;
+                    else if(isAdmin && u.status === "pending") pendingList.innerHTML += card;
                 });
             }
         });
 
-        // Admin Functions
-        window.approveProfile = (key) => update(ref(db, 'profiles/' + key), { status: "approved" });
-        window.toggleVerify = (key, cur) => update(ref(db, 'profiles/' + key), { verified: !cur });
-        window.deleteProfile = (key) => confirm("Delete?") && remove(ref(db, 'profiles/' + key));
-        window.adminLogin = () => {
-            if(prompt("Pass:") === "nikah786") { localStorage.setItem('nikahAdmin', 'true'); location.reload(); }
-        };
+        // ADMIN ACTIONS
+        window.approve = (k) => update(ref(db, 'profiles/'+k), {status:'approved'});
+        window.toggleVerify = (k, v) => update(ref(db, 'profiles/'+k), {verified: !v});
+        window.del = (k) => confirm("Delete?") && remove(ref(db, 'profiles/'+k));
+        window.adminLogin = () => { if(prompt("Password:") === "nikah786") { localStorage.setItem('nikahAdmin', 'true'); location.reload(); } };
         window.adminLogout = () => { localStorage.removeItem('nikahAdmin'); location.reload(); };
         if(localStorage.getItem('nikahAdmin') === 'true') document.getElementById('adminArea').style.display = "block";
     </script>
@@ -250,12 +247,10 @@
     <script>
         function openModal() { document.getElementById('regModal').style.display = "block"; }
         function closeModal() { document.getElementById('regModal').style.display = "none"; }
-        function searchProfiles() {
-            let filter = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('user-card');
-            for (let card of cards) {
-                card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
-            }
+        function search() {
+            let q = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let c of cards) { c.style.display = c.innerText.toLowerCase().includes(q) ? "block" : "none"; }
         }
     </script>
 </body>
