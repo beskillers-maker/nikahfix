@@ -4,34 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikah Fix - Official</title>
+    
     <style>
+        /* CSS DESIGN */
         :root { --pink: #e91e63; --dark: #1f2937; --bg: #f3f4f6; --green: #25d366; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--dark); }
+
+        /* Navbar */
         .navbar { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: bold; }
         .logo span { color: var(--pink); }
         .reg-btn { background: var(--pink); color: white; border: none; padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: bold; }
-        .hero { height: 250px; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+
+        /* Hero Section */
+        .hero { height: 300px; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero h1 { font-size: 40px; margin: 0; }
+        .hero h1 span { color: #ffd700; }
+
+        /* Search Bar Styling */
         .search-container { max-width: 600px; margin: -30px auto 30px; padding: 0 20px; position: relative; z-index: 10; }
-        .search-bar { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.15); font-size: 16px; outline: none; box-sizing: border-box; }
+        .search-bar { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.15); font-size: 16px; outline: none; }
+
+        /* Modal (Popup) */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
         .modal-content { background: white; margin: 2% auto; padding: 30px; width: 90%; max-width: 480px; border-radius: 15px; position: relative; }
         .close { position: absolute; right: 20px; top: 10px; font-size: 35px; cursor: pointer; color: #999; }
+
+        /* FORM STYLING */
         form label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; color: #555; }
         form input, form select { width: 100%; height: 45px; padding: 0 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        
         .form-row { display: flex; gap: 15px; margin-top: 5px; }
         .form-group { flex: 1; }
+
         .gender-box { display: flex; gap: 15px; align-items: center; background: #fff; padding: 0 10px; border: 1px solid #ccc; border-radius: 6px; height: 45px; margin-top: 5px; box-sizing: border-box; }
         .gender-box label { margin: 0 !important; font-weight: normal !important; display: flex; align-items: center; cursor: pointer; width: auto !important; }
         .gender-box input[type="radio"] { width: 18px !important; height: 18px !important; margin-right: 6px !important; }
+
+        .hidden-input { display: none; margin-top: 10px; border: 2px solid var(--pink) !important; background: #fff0f5; }
         .submit-btn { width: 100%; background: var(--pink); color: white; border: none; padding: 15px; border-radius: 6px; margin-top: 25px; font-size: 18px; font-weight: bold; cursor: pointer; }
+
+        /* Profiles Grid */
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
         .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; list-style: none; padding: 20px 0 60px; }
-        .user-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+        .user-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
+        .user-card:hover { transform: translateY(-5px); }
         .user-card img { width: 100%; height: 280px; object-fit: cover; }
         .user-info { padding: 15px; }
         .user-info h3 { margin: 0; color: var(--pink); font-size: 20px; }
-        .wa-btn { display: flex; align-items: center; justify-content: center; background: var(--green); color: white; text-decoration: none; padding: 10px; margin-top: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; }
+        .user-info p { margin: 5px 0; color: #555; font-size: 14px; }
+
+        .wa-btn { display: flex; align-items: center; justify-content: center; background: var(--green); color: white; text-decoration: none; padding: 10px; margin-top: 10px; border-radius: 8px; font-weight: bold; gap: 8px; font-size: 14px; }
+        .wa-btn:hover { background: #1eb954; }
     </style>
 </head>
 <body>
@@ -42,27 +66,34 @@
     </nav>
 
     <header class="hero">
-        <h1 style="color:white; font-size: 32px;">Find Your Life Partner</h1>
+        <div class="hero-content">
+            <h1>Find Your <span>Perfect</span> Match</h1>
+        </div>
     </header>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search City, Caste or Name...">
+        <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search by City, Caste or Name...">
     </div>
 
     <div id="regModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 style="text-align:center; color:var(--pink);">Create Profile</h2>
+            <h2 style="text-align:center; color:var(--pink); margin:0 0 20px 0;">Create Profile</h2>
+            
             <form id="regForm">
                 <label>Profile Image</label>
                 <input type="file" id="profilePic" accept="image/*" required>
-                
+
                 <label>Full Name</label>
-                <input type="text" id="fullname" placeholder="Full Name" required>
-                
+                <input type="text" id="fullname" placeholder="Enter Name" required>
+
                 <div class="form-row">
-                    <div class="form-group"><label>Age</label><input type="number" id="age" min="18" required></div>
-                    <div class="form-group"><label>Gender</label>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="age" min="18" placeholder="Age" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
                         <div class="gender-box">
                             <label><input type="radio" name="gender" value="Male" required> Male</label>
                             <label><input type="radio" name="gender" value="Female"> Female</label>
@@ -70,11 +101,11 @@
                     </div>
                 </div>
 
-                <label>WhatsApp (e.g. 923001234567)</label>
-                <input type="text" id="whatsapp" required>
+                <label>WhatsApp Number</label>
+                <input type="text" id="whatsapp" placeholder="e.g. 923001234567" required>
 
                 <label>City</label>
-                <input list="cities" id="cityInput" placeholder="Select City" required>
+                <input list="cities" id="cityInput" placeholder="Search City..." oninput="checkDatalistOther(this, 'cityOther')" required>
                 <datalist id="cities">
                     <option value="Ahmadpur East"> <option value="Ahmed Nager Chatha"> <option value="Ali Pur"> <option value="Arifwala">
                     <option value="Attock"> <option value="Bhalwal"> <option value="Bahawalnagar"> <option value="Bahawalpur">
@@ -124,10 +155,33 @@
                     <option value="Bagh"> <option value="Bhimber"> <option value="Kotli"> <option value="Mirpur">
                     <option value="Muzaffarabad"> <option value="Rawalakot"> <option value="Gilgit"> <option value="Skardu">
                     <option value="Islamabad">
+                    <option value="Other">
                 </datalist>
+                <input type="text" id="cityOther" placeholder="Type City Name" class="hidden-input">
+
+                <label>Religion</label>
+                <select id="religion" onchange="handleReligionChange(this)" required>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Sikh">Sikh</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" id="religionOther" placeholder="Type Religion" class="hidden-input">
+
+                <div id="sectSection">
+                    <label>Sect (Maslak)</label>
+                    <select id="sect" onchange="checkSectOther(this)">
+                        <option value="Sunni">Sunni</option>
+                        <option value="Shia">Shia</option>
+                        <option value="Ahle-Hadith">Ahle-Hadith</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="sectOther" placeholder="Type Sect" class="hidden-input">
+                </div>
 
                 <label>Caste</label>
-                <input list="castes" id="casteInput" placeholder="Select Caste" required>
+                <input list="castes" id="casteInput" placeholder="Search Caste..." oninput="checkDatalistOther(this, 'casteOther')" required>
                 <datalist id="castes">
                     <option value="Rajput"> <option value="Jatt"> <option value="Arain"> <option value="Butt">
                     <option value="Sheikh"> <option value="Syed"> <option value="Gujjar"> <option value="Pathan">
@@ -140,7 +194,9 @@
                     <option value="Mahsud"> <option value="Bugti"> <option value="Marri"> <option value="Mengal">
                     <option value="Rind"> <option value="Talpur"> <option value="Leghari"> <option value="Mazari">
                     <option value="Zardari"> <option value="Jatoi"> <option value="Lohana"> <option value="Brahui">
+                    <option value="Other">
                 </datalist>
+                <input type="text" id="casteOther" placeholder="Type Caste Name" class="hidden-input">
 
                 <button type="submit" class="submit-btn" id="subBtn">Publish Profile</button>
             </form>
@@ -169,6 +225,7 @@
         const db = getDatabase(app);
         const usersRef = ref(db, 'profiles');
 
+        // Submit Profile
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('subBtn');
@@ -179,14 +236,25 @@
             const reader = new FileReader();
 
             reader.onload = function(event) {
+                let city = document.getElementById('cityInput').value;
+                if(city === "Other") city = document.getElementById('cityOther').value;
+                let rel = document.getElementById('religion').value;
+                if(rel === "Other") rel = document.getElementById('religionOther').value;
+                let caste = document.getElementById('casteInput').value;
+                if(caste === "Other") caste = document.getElementById('casteOther').value;
+                let sect = "";
+                if(document.getElementById('religion').value === "Muslim") {
+                    sect = document.getElementById('sect').value;
+                    if(sect === "Other") sect = document.getElementById('sectOther').value;
+                }
+
                 const newUser = {
+                    img: event.target.result,
                     name: document.getElementById('fullname').value,
                     age: document.getElementById('age').value,
                     gender: document.querySelector('input[name="gender"]:checked').value,
                     wa: document.getElementById('whatsapp').value,
-                    city: document.getElementById('cityInput').value,
-                    caste: document.getElementById('casteInput').value,
-                    img: event.target.result
+                    city: city, rel: rel, sect: sect, caste: caste
                 };
 
                 push(usersRef, newUser).then(() => {
@@ -196,9 +264,10 @@
                     document.getElementById('regForm').reset();
                 });
             };
-            reader.readAsDataURL(file);
+            if(file) reader.readAsDataURL(file);
         });
 
+        // Sync Profiles with Firebase
         onValue(usersRef, (snapshot) => {
             const list = document.getElementById('users');
             list.innerHTML = "";
@@ -212,9 +281,13 @@
                         <div class="user-info">
                             <h3>${u.name}</h3>
                             <p><strong>${u.age} Yrs | ${u.gender}</strong></p>
-                            <p>📍 ${u.city} | ${u.caste}</p>
-                            <a href="https://wa.me/${u.wa}" target="_blank" class="wa-btn">WhatsApp</a>
-                        </div>`;
+                            <p>📍 ${u.city}</p>
+                            <p>${u.rel} ${u.sect ? '| '+u.sect : ''} | ${u.caste}</p>
+                            <a href="https://wa.me/${u.wa}" target="_blank" class="wa-btn">
+                                Contact on WhatsApp
+                            </a>
+                        </div>
+                    `;
                     list.appendChild(li);
                 });
             }
@@ -224,13 +297,32 @@
     <script>
         function openModal() { document.getElementById('regModal').style.display = "block"; }
         function closeModal() { document.getElementById('regModal').style.display = "none"; }
+
+        function checkDatalistOther(input, targetId) {
+            const el = document.getElementById(targetId);
+            if(input.value === "Other") { el.style.display = "block"; el.required = true; }
+            else { el.style.display = "none"; el.required = false; }
+        }
+
+        function handleReligionChange(sel) {
+            document.getElementById('religionOther').style.display = (sel.value === "Other") ? "block" : "none";
+            document.getElementById('sectSection').style.display = (sel.value === "Muslim") ? "block" : "none";
+        }
+
+        function checkSectOther(sel) {
+            document.getElementById('sectOther').style.display = (sel.value === "Other") ? "block" : "none";
+        }
+
         function searchProfiles() {
             let filter = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('user-card');
             for (let card of cards) {
-                card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
+                let text = card.innerText.toLowerCase();
+                card.style.display = text.includes(filter) ? "block" : "none";
             }
         }
+
+        window.onclick = function(e) { if(e.target == document.getElementById('regModal')) closeModal(); }
     </script>
 </body>
 </html>
