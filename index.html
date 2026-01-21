@@ -6,7 +6,6 @@
     <title>Nikah Fix - Official</title>
     
     <style>
-        /* آپ کا پرانا اور اصل ڈیزائن */
         :root { --pink: #e91e63; --dark: #1f2937; --bg: #f3f4f6; --green: #25d366; --blue: #3498db; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--dark); }
 
@@ -16,41 +15,39 @@
         .logo span { color: var(--pink); }
         .reg-btn { background: var(--pink); color: white; border: none; padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: bold; }
 
-        /* Hero Section */
+        /* Hero & Success Bar */
         .hero { height: 250px; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-        
-        /* Success Stories Bar (Sada Design) */
-        .success-bar { background: #fff; padding: 15px; text-align: center; border-bottom: 1px solid #ddd; overflow: hidden; }
-        .marquee { display: inline-block; white-space: nowrap; animation: scroll 20s linear infinite; color: var(--pink); font-weight: 500; }
+        .success-bar { background: #fff; padding: 10px; text-align: center; border-bottom: 1px solid #ddd; overflow: hidden; font-size: 14px; }
+        .marquee { display: inline-block; white-space: nowrap; animation: scroll 25s linear infinite; color: var(--pink); }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Search Bar */
+        /* Search */
         .search-container { max-width: 600px; margin: -30px auto 30px; padding: 0 20px; position: relative; z-index: 10; }
         .search-bar { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.15); font-size: 16px; outline: none; }
 
-        /* Grid & Cards */
+        /* Grid */
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
         .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; list-style: none; padding: 20px 0 60px; }
         .user-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; position: relative; }
         .user-card img { width: 100%; height: 280px; object-fit: cover; }
-        
-        /* Badge Design */
         .badge-v { position: absolute; top: 10px; right: 10px; background: var(--blue); color: white; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
 
-        .user-info { padding: 15px; }
-        .wa-btn { display: block; background: var(--green); color: white; text-decoration: none; padding: 10px; margin-top: 10px; border-radius: 8px; font-weight: bold; }
-
-        /* Admin Dashboard */
-        #adminArea { display: none; background: #fff3f3; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 2px dashed var(--pink); }
-        .admin-controls { display: flex; gap: 5px; margin-top: 10px; }
-        .adm-btn { flex: 1; padding: 5px; font-size: 11px; cursor: pointer; border: none; color: white; border-radius: 4px; }
-
-        /* Registration Modal */
+        /* Form & Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
-        .modal-content { background: white; margin: 5% auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 15px; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        .modal-content { background: white; margin: 2% auto; padding: 30px; width: 90%; max-width: 480px; border-radius: 15px; position: relative; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 35px; cursor: pointer; color: #999; }
+        form label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; color: #555; }
+        form input, form select { width: 100%; height: 45px; padding: 0 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .hidden-input { display: none; margin-top: 10px; border: 2px solid var(--pink) !important; background: #fff0f5; }
+
+        /* Pages */
+        .page-content { display: none; padding: 40px 5%; background: white; min-height: 400px; line-height: 1.8; }
+        .page-content.active { display: block; }
         
-        footer { background: var(--dark); color: white; padding: 30px; text-align: center; margin-top: 40px; }
+        footer { background: var(--dark); color: white; padding: 40px 5%; text-align: center; margin-top: 50px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; font-size: 14px; }
+        .footer-links a { color: #ccc; text-decoration: none; cursor: pointer; }
+        .wa-btn { display: block; background: var(--green); color: white; text-decoration: none; padding: 12px; margin-top: 10px; border-radius: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -60,57 +57,96 @@
         <button class="reg-btn" onclick="openModal()">Register Free</button>
     </nav>
 
-    <header class="hero">
-        <h1>Find Your Perfect Match</h1>
-    </header>
-
-    <div class="success-bar">
-        <div class="marquee">
-            Alhamdulillah! Ahmed (Lahore) found a match • Sara (Karachi) got married • 500+ Profiles Verified • Start your journey today!
+    <div id="main-site">
+        <header class="hero"><h1>Find Your Perfect Match</h1></header>
+        <div class="success-bar">
+            <div class="marquee">Alhamdulillah! 1000+ Profiles • Ahmed from Lahore found a match • Sara & Bilal got married • Get Verified Today!</div>
         </div>
+        <div class="search-container"><input type="text" id="searchInput" class="search-bar" onkeyup="search()" placeholder="Search City, Caste or Name..."></div>
+        <main class="container">
+            <div id="adminArea" style="display:none; background:#fff3f3; padding:20px; border-radius:15px; border:2px dashed var(--pink); margin-bottom:30px;">
+                <h3>Admin: Pending Approvals</h3>
+                <ul id="pendingUsers" class="profile-grid"></ul>
+                <button onclick="adminLogout()" class="reg-btn" style="background:#555">Logout</button>
+            </div>
+            <ul id="users" class="profile-grid"></ul>
+        </main>
     </div>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search by City, Caste or Name...">
+    <div id="privacy-page" class="page-content">
+        <div class="container"><h1>Privacy Policy</h1><p>We keep your data safe and only for matchmaking purposes...</p><button onclick="showHome()" class="reg-btn">Back Home</button></div>
     </div>
-
-    <main class="container">
-        <div id="adminArea">
-            <h3 style="color:var(--pink);">Admin: Pending Profiles</h3>
-            <ul id="pendingUsers" class="profile-grid"></ul>
-            <button onclick="adminLogout()" class="reg-btn" style="background:#555">Logout Admin</button>
-        </div>
-
-        <ul id="users" class="profile-grid"></ul>
-    </main>
-
-    <div id="regModal" class="modal">
-        <div class="modal-content">
-            <h2 style="text-align:center; color:var(--pink);">Create Profile</h2>
-            <form id="regForm">
-                <label>Profile Image</label>
-                <input type="file" id="profilePic" accept="image/*" required>
-                <input type="text" id="fullname" placeholder="Name" required>
-                <input type="number" id="age" placeholder="Age" min="18" required>
-                <select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select>
-                <input type="text" id="whatsapp" placeholder="WhatsApp (e.g. 923...)" required>
-                <input type="text" id="cityInput" placeholder="City" required>
-                <input type="text" id="casteInput" placeholder="Caste" required>
-                <button type="submit" id="subBtn" class="reg-btn" style="width:100%; padding:15px; margin-top:10px;">Publish Profile</button>
-                <p onclick="closeModal()" style="text-align:center; cursor:pointer; color:gray; margin-top:15px;">Cancel</p>
-            </form>
-        </div>
+    <div id="terms-page" class="page-content">
+        <div class="container"><h1>Terms of Service</h1><p>By using NikahFix, you agree to provide 100% correct info...</p><button onclick="showHome()" class="reg-btn">Back Home</button></div>
     </div>
 
     <footer>
         <p>&copy; 2026 NikahFix.com - Free Muslim Matrimony</p>
+        <div class="footer-links">
+            <a onclick="showPage('privacy-page')">Privacy Policy</a>
+            <a onclick="showPage('terms-page')">Terms of Use</a>
+            <a onclick="adminLogin()">Admin Access</a>
+        </div>
     </footer>
+
+    <div id="regModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color:var(--pink); text-align:center;">Create Profile</h2>
+            <form id="regForm">
+                <label>Profile Image</label><input type="file" id="profilePic" accept="image/*" required>
+                <label>Full Name</label><input type="text" id="fullname" placeholder="Name" required>
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1;"><label>Age</label><input type="number" id="age" min="18" required></div>
+                    <div style="flex:1;"><label>Gender</label><select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div>
+                </div>
+                <label>WhatsApp Number</label><input type="text" id="whatsapp" placeholder="e.g. 923001234567" required>
+                
+                <label>City</label>
+                <input list="cities" id="cityInput" placeholder="Search City..." oninput="checkOther(this, 'cityOther')" required>
+                <datalist id="cities">
+                    <option value="Ahmadpur East"> <option value="Ahmed Nager Chatha"> <option value="Ali Pur"> <option value="Arifwala">
+                    <option value="Attock"> <option value="Bhalwal"> <option value="Bahawalnagar"> <option value="Bahawalpur">
+                    <option value="Bhakkar"> <option value="Burewala"> <option value="Chakwal"> <option value="Chichawatni">
+                    <option value="Chiniot"> <option value="Chishtian"> <option value="Daska"> <option value="Dera Ghazi Khan">
+                    <option value="Faisalabad"> <option value="Gujranwala"> <option value="Gujrat"> <option value="Islamabad">
+                    <option value="Karachi"> <option value="Lahore"> <option value="Multan"> <option value="Peshawar">
+                    <option value="Quetta"> <option value="Rawalpindi"> <option value="Sargodha"> <option value="Sialkot">
+                    <option value="Other">
+                    </datalist>
+                <input type="text" id="cityOther" placeholder="Type City Name" class="hidden-input">
+
+                <label>Religion</label>
+                <select id="religion" onchange="handleReligion(this)" required>
+                    <option value="Muslim">Muslim</option><option value="Christian">Christian</option>
+                    <option value="Hindu">Hindu</option><option value="Sikh">Sikh</option><option value="Other">Other</option>
+                </select>
+                <input type="text" id="religionOther" placeholder="Type Religion" class="hidden-input">
+
+                <div id="sectDiv">
+                    <label>Sect (Maslak)</label>
+                    <select id="sect" onchange="checkOther(this, 'sectOther')">
+                        <option value="Sunni">Sunni</option><option value="Shia">Shia</option><option value="Ahle-Hadith">Ahle-Hadith</option><option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="sectOther" placeholder="Type Sect" class="hidden-input">
+                </div>
+
+                <label>Caste</label>
+                <input list="castes" id="casteInput" placeholder="Search Caste..." oninput="checkOther(this, 'casteOther')" required>
+                <datalist id="castes">
+                    <option value="Rajput"> <option value="Jatt"> <option value="Arain"> <option value="Butt"> <option value="Sheikh"> <option value="Syed"> <option value="Other">
+                </datalist>
+                <input type="text" id="casteOther" placeholder="Type Caste" class="hidden-input">
+
+                <button type="submit" id="subBtn" class="reg-btn" style="width:100%; height:50px; margin-top:20px;">Publish Profile</button>
+            </form>
+        </div>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-        // Firebase Config (Same as yours)
         const firebaseConfig = {
             apiKey: "AIzaSyCtKxg4q4zE7WfXdvDzEd4cpBfJMFzwKrQ",
             authDomain: "nikahfix-a6980.firebaseapp.com",
@@ -124,60 +160,56 @@
         const db = getDatabase(app);
         const usersRef = ref(db, 'profiles');
 
-        // Submit Profile
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('subBtn'); btn.disabled = true;
             const file = document.getElementById('profilePic').files[0];
             const reader = new FileReader();
             reader.onload = (ev) => {
+                let city = document.getElementById('cityInput').value === "Other" ? document.getElementById('cityOther').value : document.getElementById('cityInput').value;
                 push(usersRef, {
                     img: ev.target.result, name: document.getElementById('fullname').value,
                     age: document.getElementById('age').value, gender: document.getElementById('gender').value,
-                    wa: document.getElementById('whatsapp').value, city: document.getElementById('cityInput').value,
+                    wa: document.getElementById('whatsapp').value, city: city,
                     caste: document.getElementById('casteInput').value, status: "pending", verified: false
-                }).then(() => { alert("Success! Pending approval."); location.reload(); });
+                }).then(() => { alert("Submitted!"); location.reload(); });
             };
             reader.readAsDataURL(file);
         });
 
-        // Display Data
-        onValue(usersRef, (snapshot) => {
+        onValue(usersRef, (snap) => {
             const list = document.getElementById('users');
             const pendingList = document.getElementById('pendingUsers');
             list.innerHTML = ""; pendingList.innerHTML = "";
-            const data = snapshot.val();
+            const data = snap.val();
             const isAdmin = localStorage.getItem('nikahAdmin') === 'true';
-
             if(data) {
-                Object.keys(data).reverse().forEach(key => {
-                    const u = data[key];
+                Object.keys(data).reverse().forEach(k => {
+                    const u = data[k];
                     const html = `
                         <li class="user-card">
                             ${u.verified ? '<div class="badge-v">✅ Verified</div>' : ''}
                             <img src="${u.img}">
                             <div class="user-info">
                                 <h3>${u.name}</h3>
-                                <p>${u.age} Yrs | ${u.city} | ${u.caste}</p>
-                                ${u.status === 'approved' ? `<a href="https://wa.me/${u.wa}" target="_blank" class="wa-btn">Contact WhatsApp</a>` : ''}
-                                ${isAdmin ? `
-                                    <div class="admin-controls">
-                                        ${u.status === 'pending' ? `<button onclick="approveProfile('${key}')" class="adm-btn" style="background:green">Approve</button>` : ''}
-                                        <button onclick="toggleVerify('${key}', ${u.verified})" class="adm-btn" style="background:blue">Verify</button>
-                                        <button onclick="deleteProfile('${key}')" class="adm-btn" style="background:red">Delete</button>
-                                    </div>` : ''}
+                                <p>${u.age} | ${u.city} | ${u.caste}</p>
+                                ${u.status === 'approved' ? `<a href="https://wa.me/${u.wa}" target="_blank" class="wa-btn">WhatsApp</a>` : ''}
+                                ${isAdmin ? `<div style="margin-top:5px;">
+                                    <button onclick="approve('${k}')" style="background:green;color:white;border:none;padding:5px;cursor:pointer;">OK</button>
+                                    <button onclick="vfy('${k}',${u.verified})" style="background:blue;color:white;border:none;padding:5px;cursor:pointer;">Verify</button>
+                                    <button onclick="del('${k}')" style="background:red;color:white;border:none;padding:5px;cursor:pointer;">X</button>
+                                </div>` : ''}
                             </div>
                         </li>`;
-                    if(u.status === "approved") list.innerHTML += html;
-                    else if(isAdmin && u.status === "pending") pendingList.innerHTML += html;
+                    if(u.status === 'approved') list.innerHTML += html;
+                    else if(isAdmin && u.status === 'pending') pendingList.innerHTML += html;
                 });
             }
         });
 
-        // Admin Actions
-        window.approveProfile = (k) => update(ref(db, 'profiles/'+k), {status:'approved'});
-        window.toggleVerify = (k, v) => update(ref(db, 'profiles/'+k), {verified: !v});
-        window.deleteProfile = (k) => confirm("Delete?") && remove(ref(db, 'profiles/'+k));
+        window.approve = (k) => update(ref(db, 'profiles/'+k), {status:'approved'});
+        window.vfy = (k, v) => update(ref(db, 'profiles/'+k), {verified: !v});
+        window.del = (k) => confirm("Delete?") && remove(ref(db, 'profiles/'+k));
         window.adminLogin = () => { if(prompt("Pass:") === "nikah786") { localStorage.setItem('nikahAdmin','true'); location.reload(); } };
         window.adminLogout = () => { localStorage.removeItem('nikahAdmin'); location.reload(); };
         if(localStorage.getItem('nikahAdmin') === 'true') document.getElementById('adminArea').style.display = "block";
@@ -186,7 +218,22 @@
     <script>
         function openModal() { document.getElementById('regModal').style.display = "block"; }
         function closeModal() { document.getElementById('regModal').style.display = "none"; }
-        function searchProfiles() {
+        function showPage(id) { 
+            document.getElementById('main-site').style.display = 'none';
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+        function showHome() {
+            document.getElementById('main-site').style.display = 'block';
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        }
+        function checkOther(el, target) { document.getElementById(target).style.display = (el.value === "Other") ? "block" : "none"; }
+        function handleReligion(sel) {
+            document.getElementById('religionOther').style.display = (sel.value === "Other") ? "block" : "none";
+            document.getElementById('sectDiv').style.display = (sel.value === "Muslim") ? "block" : "none";
+        }
+        function search() {
             let q = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('user-card');
             for (let c of cards) { c.style.display = c.innerText.toLowerCase().includes(q) ? "block" : "none"; }
