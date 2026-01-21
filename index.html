@@ -24,7 +24,6 @@
         .gender-box { display: flex; gap: 15px; align-items: center; background: #fff; padding: 0 10px; border: 1px solid #ccc; border-radius: 6px; height: 45px; margin-top: 5px; box-sizing: border-box; }
         .gender-box label { margin: 0 !important; font-weight: normal !important; display: flex; align-items: center; cursor: pointer; width: auto !important; }
         .gender-box input[type="radio"] { width: 18px !important; height: 18px !important; margin-right: 6px !important; }
-        .hidden-input { display: none; margin-top: 10px; border: 2px solid var(--pink) !important; background: #fff0f5; }
         .submit-btn { width: 100%; background: var(--pink); color: white; border: none; padding: 15px; border-radius: 6px; margin-top: 25px; font-size: 18px; font-weight: bold; cursor: pointer; }
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
         .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; list-style: none; padding: 20px 0 60px; }
@@ -47,7 +46,7 @@
     </header>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search by City, Caste or Name...">
+        <input type="text" id="searchInput" class="search-bar" onkeyup="searchProfiles()" placeholder="Search City, Caste or Name...">
     </div>
 
     <div id="regModal" class="modal">
@@ -57,29 +56,92 @@
             <form id="regForm">
                 <label>Profile Image</label>
                 <input type="file" id="profilePic" accept="image/*" required>
+                
                 <label>Full Name</label>
                 <input type="text" id="fullname" placeholder="Full Name" required>
+                
                 <div class="form-row">
                     <div class="form-group"><label>Age</label><input type="number" id="age" min="18" required></div>
                     <div class="form-group"><label>Gender</label>
                         <div class="gender-box">
-                            <label><input type="radio" name="gender" value="Male" required> M</label>
-                            <label><input type="radio" name="gender" value="Female"> F</label>
+                            <label><input type="radio" name="gender" value="Male" required> Male</label>
+                            <label><input type="radio" name="gender" value="Female"> Female</label>
                         </div>
                     </div>
                 </div>
+
                 <label>WhatsApp (e.g. 923001234567)</label>
                 <input type="text" id="whatsapp" required>
+
                 <label>City</label>
                 <input list="cities" id="cityInput" placeholder="Select City" required>
                 <datalist id="cities">
-                    <option value="Karachi"> <option value="Lahore"> <option value="Islamabad"> <option value="Faisalabad"> <option value="Multan"> <option value="Gujranwala"> <option value="Quetta"> <option value="Peshawar">
+                    <option value="Ahmadpur East"> <option value="Ahmed Nager Chatha"> <option value="Ali Pur"> <option value="Arifwala">
+                    <option value="Attock"> <option value="Bhalwal"> <option value="Bahawalnagar"> <option value="Bahawalpur">
+                    <option value="Bhakkar"> <option value="Burewala"> <option value="Chakwal"> <option value="Chichawatni">
+                    <option value="Chiniot"> <option value="Chishtian"> <option value="Daska"> <option value="Dera Ghazi Khan">
+                    <option value="Dina"> <option value="Dinga"> <option value="Dipalpur"> <option value="Faisalabad">
+                    <option value="Fateh Jang"> <option value="Gojra"> <option value="Gujranwala"> <option value="Gujrat">
+                    <option value="Hafizabad"> <option value="Haroonabad"> <option value="Hasilpur"> <option value="Hassan Abdal">
+                    <option value="Jalalpur"> <option value="Jaranwala"> <option value="Jhang"> <option value="Jhelum">
+                    <option value="Kamalia"> <option value="Kamoke"> <option value="Kasur"> <option value="Khanewal">
+                    <option value="Khanpur"> <option value="Khushab"> <option value="Kot Addu"> <option value="Lahore">
+                    <option value="Lalamusa"> <option value="Layyah"> <option value="Liaquatpur"> <option value="Lodhran">
+                    <option value="Mandi Bahauddin"> <option value="Mianwali"> <option value="Multan"> <option value="Muridke">
+                    <option value="Murree"> <option value="Muzaffargarh"> <option value="Nankana Sahib"> <option value="Narowal">
+                    <option value="Okara"> <option value="Pakpattan"> <option value="Pattoki"> <option value="Pindi Bhattian">
+                    <option value="Pirmahal"> <option value="Rahim Yar Khan"> <option value="Raiwind"> <option value="Rajanpur">
+                    <option value="Rawalpindi"> <option value="Sadiqabad"> <option value="Safdarabad"> <option value="Sahiwal">
+                    <option value="Sambrial"> <option value="Samundri"> <option value="Sangla Hill"> <option value="Sargodha">
+                    <option value="Shakargarh"> <option value="Sheikhupura"> <option value="Sialkot"> <option value="Sohawa">
+                    <option value="Talagang"> <option value="Taxila"> <option value="Toba Tek Singh"> <option value="Vehari">
+                    <option value="Wah Cantt"> <option value="Wazirabad">
+                    <option value="Badin"> <option value="Bhirkan"> <option value="Dadu"> <option value="Daharki">
+                    <option value="Ghotki"> <option value="Hala"> <option value="Hyderabad"> <option value="Jacobabad">
+                    <option value="Jamshoro"> <option value="Kandhkot"> <option value="Karachi"> <option value="Kashmore">
+                    <option value="Khairpur"> <option value="Kotri"> <option value="Larkana"> <option value="Matiari">
+                    <option value="Mehar"> <option value="Mirpur Khas"> <option value="Mithani"> <option value="Mithi">
+                    <option value="Moro"> <option value="Nagarparkar"> <option value="Naudero"> <option value="Naushahro Feroze">
+                    <option value="Nawabshah"> <option value="Ratodero"> <option value="Rohri"> <option value="Sanghar">
+                    <option value="Sehwan Sharif"> <option value="Shahdadkot"> <option value="Shahdadpur"> <option value="Shikarpur">
+                    <option value="Sujawal"> <option value="Sukkur"> <option value="Tando Adam"> <option value="Tando Allahyar">
+                    <option value="Tando Muhammad Khan"> <option value="Thatta"> <option value="Umerkot">
+                    <option value="Abbottabad"> <option value="Bannu"> <option value="Batagram"> <option value="Bunner">
+                    <option value="Charsadda"> <option value="Chitral"> <option value="Dera Ismail Khan"> <option value="Dir">
+                    <option value="Hangu"> <option value="Haripur"> <option value="Karak"> <option value="Kohat">
+                    <option value="Kohistan"> <option value="Lakki Marwat"> <option value="Lower Dir"> <option value="Malakand">
+                    <option value="Mansehra"> <option value="Mardan"> <option value="Mingora"> <option value="Nowshera">
+                    <option value="Peshawar"> <option value="Shangla"> <option value="Swabi"> <option value="Swat">
+                    <option value="Tank"> <option value="Timergara"> <option value="Tordher">
+                    <option value="Awaran"> <option value="Barkhan"> <option value="Chaman"> <option value="Dera Bugti">
+                    <option value="Gwadar"> <option value="Harnai"> <option value="Hub"> <option value="Jhal Magsi">
+                    <option value="Kalat"> <option value="Kharan"> <option value="Khuzdar"> <option value="Killa Abdullah">
+                    <option value="Killa Saifullah"> <option value="Kohlu"> <option value="Loralai"> <option value="Mastung">
+                    <option value="Musakhel"> <option value="Nushki"> <option value="Ormara"> <option value="Panjgur">
+                    <option value="Pishin"> <option value="Quetta"> <option value="Sibi"> <option value="Sui">
+                    <option value="Turbat"> <option value="Usta Muhammad"> <option value="Washuk"> <option value="Zhob">
+                    <option value="Ziarat">
+                    <option value="Bagh"> <option value="Bhimber"> <option value="Kotli"> <option value="Mirpur">
+                    <option value="Muzaffarabad"> <option value="Rawalakot"> <option value="Gilgit"> <option value="Skardu">
+                    <option value="Islamabad">
                 </datalist>
+
                 <label>Caste</label>
                 <input list="castes" id="casteInput" placeholder="Select Caste" required>
                 <datalist id="castes">
-                    <option value="Rajput"> <option value="Jatt"> <option value="Arain"> <option value="Sheikh"> <option value="Syed"> <option value="Gujjar">
+                    <option value="Rajput"> <option value="Jatt"> <option value="Arain"> <option value="Butt">
+                    <option value="Sheikh"> <option value="Syed"> <option value="Gujjar"> <option value="Pathan">
+                    <option value="Baloch"> <option value="Mughal"> <option value="Awan"> <option value="Malik">
+                    <option value="Qureshi"> <option value="Memon"> <option value="Ansari"> <option value="Abbasi">
+                    <option value="Siddiqui"> <option value="Hashmi"> <option value="Alvi"> <option value="Farooqi">
+                    <option value="Kashmiri"> <option value="Janua"> <option value="Dogar"> <option value="Ghakhar">
+                    <option value="Khokhar"> <option value="Joyia"> <option value="Wattoo"> <option value="Bhatti">
+                    <option value="Tiwanas"> <option value="Afridi"> <option value="Khattak"> <option value="Yousafzai">
+                    <option value="Mahsud"> <option value="Bugti"> <option value="Marri"> <option value="Mengal">
+                    <option value="Rind"> <option value="Talpur"> <option value="Leghari"> <option value="Mazari">
+                    <option value="Zardari"> <option value="Jatoi"> <option value="Lohana"> <option value="Brahui">
                 </datalist>
+
                 <button type="submit" class="submit-btn" id="subBtn">Publish Profile</button>
             </form>
         </div>
@@ -107,11 +169,10 @@
         const db = getDatabase(app);
         const usersRef = ref(db, 'profiles');
 
-        // Submit to Firebase
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('subBtn');
-            btn.innerText = "Uploading...";
+            btn.innerText = "Publishing...";
             btn.disabled = true;
 
             const file = document.getElementById('profilePic').files[0];
@@ -138,7 +199,6 @@
             reader.readAsDataURL(file);
         });
 
-        // Load from Firebase
         onValue(usersRef, (snapshot) => {
             const list = document.getElementById('users');
             list.innerHTML = "";
